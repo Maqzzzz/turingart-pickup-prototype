@@ -6,7 +6,20 @@
     <title>TuringArt 拍照单精修幻灯片原型</title>
     <link rel="stylesheet" href="./styles.css?v=20260526-share" />
   </head>
-  <body>
+  <body class="auth-locked">
+    <section class="auth-gate" id="authGate" aria-label="访问密码">
+      <form class="auth-card" id="authForm">
+        <img src="https://tuling.c360dn.com/assets/images/logo.png" alt="TuringArt" />
+        <h1>访问验证</h1>
+        <p>请输入当天 8 位日期密码</p>
+        <label>
+          <span>密码</span>
+          <input id="authPassword" type="password" inputmode="numeric" autocomplete="one-time-code" placeholder="YYYYMMDD" maxlength="8" />
+        </label>
+        <button class="primary-button" type="submit">进入体验</button>
+        <span class="auth-error" id="authError" role="alert"></span>
+      </form>
+    </section>
     <main class="app" id="app">
       <section class="product-shell view is-active" id="galleryView" aria-label="图库页">
         <aside class="sidebar">
@@ -364,6 +377,6 @@
       <audio id="musicPlayer" src="./assets/music/段奥娟 - 陪我长大.mp3" loop preload="auto"></audio>
     </main>
 
-    <script src="./app.js?v=20260526-share"></script>
+    <script src="./app.js?v=20260526-auth"></script>
   </body>
 </html>

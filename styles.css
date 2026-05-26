@@ -37,6 +37,82 @@ button {
   cursor: pointer;
 }
 
+body.auth-locked .app {
+  visibility: hidden;
+}
+
+.auth-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 50% 10%, rgba(255, 77, 106, 0.18), transparent 34%),
+    #0b0d10;
+}
+
+body:not(.auth-locked) .auth-gate {
+  display: none;
+}
+
+.auth-card {
+  width: min(100%, 360px);
+  display: grid;
+  gap: 16px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius);
+  background: rgba(20, 23, 28, 0.94);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+}
+
+.auth-card img {
+  width: 112px;
+  height: auto;
+}
+
+.auth-card h1,
+.auth-card p {
+  margin: 0;
+}
+
+.auth-card h1 {
+  font-size: 20px;
+  letter-spacing: 0;
+}
+
+.auth-card p,
+.auth-card span {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.auth-card label {
+  display: grid;
+  gap: 8px;
+}
+
+.auth-card input {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0 12px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.auth-card .primary-button {
+  width: 100%;
+}
+
+.auth-error {
+  min-height: 18px;
+  color: var(--accent-2) !important;
+}
+
 .app,
 .view {
   min-height: 100vh;

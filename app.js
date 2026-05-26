@@ -57,6 +57,49 @@ const state = {
 
 const $ = (selector) => document.querySelector(selector);
 
+function todayPassword() {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}${month}${day}`;
+}
+
+function unlockApp() {
+  document.body.classList.remove("auth-locked");
+}
+
+function setupAuthGate() {
+  const form = $("#authForm");
+  const input = $("#authPassword");
+  const error = $("#authError");
+  const password = todayPassword();
+  const storageKey = `turingart-auth-${password}`;
+
+  if (!form || !input || !error) {
+    unlockApp();
+    return;
+  }
+
+  if (localStorage.getItem(storageKey) === "ok") {
+    unlockApp();
+    return;
+  }
+
+  input.focus();
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (input.value.trim() === password) {
+      localStorage.setItem(storageKey, "ok");
+      error.textContent = "";
+      unlockApp();
+      return;
+    }
+    error.textContent = "密码不正确，请输入当天 8 位日期";
+    input.select();
+  });
+}
+
 const el = {
   views: {
     gallery: $("#galleryView"),
@@ -1085,5 +1128,6 @@ function bindEvents() {
   document.addEventListener("keydown", handleKeydown);
 }
 
+setupAuthGate();
 bindEvents();
 render();
