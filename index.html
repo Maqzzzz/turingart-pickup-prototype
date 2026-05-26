@@ -11,10 +11,14 @@
       <form class="auth-card" id="authForm">
         <img src="https://tuling.c360dn.com/assets/images/logo.png" alt="TuringArt" />
         <h1>访问验证</h1>
-        <p>请输入当天 8 位日期密码</p>
+        <p>请输入访问账号与密码</p>
+        <label>
+          <span>账号</span>
+          <input id="authAccount" type="text" autocomplete="username" />
+        </label>
         <label>
           <span>密码</span>
-          <input id="authPassword" type="password" inputmode="numeric" autocomplete="one-time-code" placeholder="YYYYMMDD" maxlength="8" />
+          <input id="authPassword" type="password" inputmode="numeric" autocomplete="current-password" maxlength="8" />
         </label>
         <button class="primary-button" type="submit">进入体验</button>
         <span class="auth-error" id="authError" role="alert"></span>

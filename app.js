@@ -71,12 +71,14 @@ function unlockApp() {
 
 function setupAuthGate() {
   const form = $("#authForm");
+  const accountInput = $("#authAccount");
   const input = $("#authPassword");
   const error = $("#authError");
   const password = todayPassword();
   const storageKey = `turingart-auth-${password}`;
+  const allowedAccounts = new Set(["S01", "S02", "S03"]);
 
-  if (!form || !input || !error) {
+  if (!form || !accountInput || !input || !error) {
     unlockApp();
     return;
   }
@@ -86,16 +88,17 @@ function setupAuthGate() {
     return;
   }
 
-  input.focus();
+  accountInput.focus();
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    if (input.value.trim() === password) {
+    const account = accountInput.value.trim().toUpperCase();
+    if (allowedAccounts.has(account) && input.value.trim() === password) {
       localStorage.setItem(storageKey, "ok");
       error.textContent = "";
       unlockApp();
       return;
     }
-    error.textContent = "密码不正确，请输入当天 8 位日期";
+    error.textContent = "账号或密码不正确";
     input.select();
   });
 }
