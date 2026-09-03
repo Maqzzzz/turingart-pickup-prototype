@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#faf8f4" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="description" content="拍摄前，先了解宝宝一点，让拍摄当天的准备更贴心。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Kids Smile · 先认识一下宝宝" />
+    <meta property="og:description" content="拍摄前，先了解宝宝一点，让拍摄当天的准备更贴心。" />
+    <meta property="og:url" content="https://maqzzzz.github.io/turingart-pickup-prototype/baby-profile/" />
+    <meta property="og:image" content="https://maqzzzz.github.io/turingart-pickup-prototype/baby-profile/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Kids Smile · 先认识一下宝宝" />
+    <meta name="twitter:description" content="拍摄前，先了解宝宝一点，让拍摄当天的准备更贴心。" />
+    <meta name="twitter:image" content="https://maqzzzz.github.io/turingart-pickup-prototype/baby-profile/og.jpg" />
+    <title>Kids Smile · 先认识一下宝宝</title>
+    <link rel="stylesheet" href="./styles.css?v=20260903-polish-6" />
+  </head>
+  <body>
+    <main class="phone-shell" id="app">
+      <header class="app-header" id="appHeader">
+        <div class="brand-row">
+          <div class="brand-lockup">
+            <button class="back-button" id="backButton" type="button" aria-label="返回上一步">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m14.5 5-7 7 7 7" />
+              </svg>
+            </button>
+            <img class="brand-logo" id="brandLogo" src="./assets/kids-smile-logo.svg" alt="Kids Smile" />
+          </div>
+          <span class="header-context" id="headerContext" aria-hidden="true"></span>
+          <span class="step-count" id="stepCount" aria-live="polite">1 / 2</span>
+        </div>
+        <div class="progress-track" id="progressTrack" aria-hidden="true">
+          <span class="progress-value" id="progressValue"></span>
+        </div>
+      </header>
+
+      <div class="stage" id="stage">
+        <section class="step-panel is-active" id="stepOne" data-step="1" aria-labelledby="stepOneTitle">
+          <div class="intro-block">
+            <h1 id="stepOneTitle">先认识一下宝宝</h1>
+            <p class="intro-copy">提前了解宝宝一点，拍摄当天我们也能准备得更贴心。</p>
+          </div>
+
+          <form class="questions" id="stepOneForm" novalidate>
+            <section class="question" id="nameQuestion">
+              <label class="question-title" for="babyName">拍摄时，我们应该怎么称呼宝宝？</label>
+              <div class="field-shell">
+                <input
+                  id="babyName"
+                  name="babyName"
+                  type="text"
+                  maxlength="20"
+                  autocomplete="name"
+                  placeholder="宝宝的名字或小名，比如：安安"
+                  enterkeyhint="next"
+                />
+              </div>
+              <p class="field-error" id="babyNameError" role="alert"></p>
+            </section>
+
+            <section class="question" id="genderQuestion">
+              <span class="question-title" id="genderQuestionTitle">宝宝是？</span>
+              <div class="gender-options" role="radiogroup" aria-label="宝宝性别">
+                <button type="button" role="radio" aria-checked="false" data-gender="boy">
+                  小王子
+                </button>
+                <button type="button" role="radio" aria-checked="false" data-gender="girl">
+                  小公主
+                </button>
+              </div>
+              <p class="field-error" id="babyGenderError" role="alert"></p>
+            </section>
+
+            <section class="question" id="dateQuestion">
+              <label class="question-title" for="birthDate">宝宝是哪天出生的？</label>
+              <div class="field-shell date-shell">
+                <input id="birthDate" name="birthDate" type="date" />
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 3v3M17 3v3M4.5 9h15M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
+                </svg>
+              </div>
+              <p class="days-note" id="daysNote" aria-live="polite"></p>
+              <p class="field-error" id="birthDateError" role="alert"></p>
+            </section>
+
+            <section class="question" id="timeQuestion">
+              <span class="question-title">宝宝大概是什么时间出生的？</span>
+              <button class="field-shell select-trigger" id="timeTrigger" type="button" aria-haspopup="dialog">
+                <span id="timeValue">选一个大概时间就好</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m9 6 6 6-6 6" />
+                </svg>
+              </button>
+              <p class="field-error" id="birthTimeError" role="alert"></p>
+            </section>
+
+            <section class="question">
+              <div class="question-heading-row">
+                <label class="question-title" for="photographerNotes">有什么想提前告诉拍摄组的吗？</label>
+                <span>选填</span>
+              </div>
+              <p class="question-help">没有也没关系，想到什么就说什么</p>
+              <div class="field-shell textarea-shell">
+                <textarea
+                  id="photographerNotes"
+                  name="photographerNotes"
+                  rows="3"
+                  maxlength="120"
+                  placeholder="比如：喜欢趴着、吃完奶容易睡着……"
+                ></textarea>
+              </div>
+            </section>
+          </form>
+        </section>
+
+        <section class="step-panel" id="stepTwo" data-step="2" aria-labelledby="stepTwoTitle" hidden>
+          <div class="intro-block">
+            <h1 id="stepTwoTitle">关于宝宝的成长</h1>
+            <p class="intro-copy">有些现在想说的话，以后再回来看，也许会很珍贵</p>
+          </div>
+
+          <form class="questions" id="stepTwoForm" novalidate>
+            <section class="question">
+              <div class="question-heading-row align-start">
+                <label class="question-title message-question-title" id="messageQuestionTitle" for="messageToBaby">如果现在想对宝宝说一句话，你会说什么？</label>
+              </div>
+              <p class="question-help">不用想得很正式，一句话就好。</p>
+              <div class="field-shell textarea-shell compact">
+                <textarea
+                  id="messageToBaby"
+                  name="messageToBaby"
+                  rows="2"
+                  maxlength="80"
+                  placeholder="比如：希望你一直健康快乐地长大"
+                ></textarea>
+              </div>
+              <div class="inspiration-row" aria-label="一句话灵感">
+                <button type="button" data-message="希望你一直健康快乐地长大">健康快乐</button>
+                <button type="button" data-message="愿你做自己就好，自在地长大">做自己就好</button>
+                <button type="button" data-message="愿你永远知道，自己一直被爱着">永远被爱</button>
+                <button class="skip-message" id="skipMessage" type="button">先不写</button>
+              </div>
+            </section>
+
+            <section class="question" id="feelingsQuestion">
+              <span class="question-title" id="feelingsQuestionTitle">以后宝宝再看到这些照片，你最希望 TA 感受到什么？</span>
+              <p class="question-help">可以多选</p>
+              <div class="choice-grid" id="feelingsGrid" role="group" aria-label="照片感受，多选">
+                <button type="button" data-feeling="我一出生就被认真爱着">我一出生就被认真爱着</button>
+                <button type="button" data-feeling="爸爸妈妈很期待我的到来">爸爸妈妈很期待我的到来</button>
+                <button type="button" data-feeling="我的家人都很爱我">我的家人都很爱我</button>
+                <button type="button" data-feeling="我小时候原来这么小">我小时候原来这么小</button>
+                <button type="button" data-feeling="我的到来，让家里多了很多快乐">我的到来，让家里多了很多快乐</button>
+                <button type="button" data-feeling="我是带着祝福来到这个世界的">我是带着祝福来到这个世界的</button>
+                <button type="button" data-feeling="我拥有一个温暖的开始">我拥有一个温暖的开始</button>
+                <button type="button" data-feeling="其他感受" aria-controls="customFeelingWrap">其他感受</button>
+              </div>
+              <div class="field-shell custom-feeling" id="customFeelingWrap" hidden>
+                <input id="customFeeling" type="text" maxlength="30" placeholder="写下你想到的感受" />
+              </div>
+            </section>
+
+            <section class="question growth-question" id="growthQuestion">
+              <span class="question-title" id="growthQuestionTitle">宝宝一天天长大，你有想过接下来想怎么记录 TA 吗？</span>
+              <p class="question-help">满月、百天、周岁……每个阶段都会有不一样的变化</p>
+              <div class="planning-options" id="planningOptions" role="radiogroup" aria-label="成长记录想法">
+                <button type="button" role="radio" aria-checked="false" data-planning="planned">
+                  <span class="radio-dot" aria-hidden="true"></span>
+                  <span><strong>已经想好几个想记录的阶段了</strong><small>比如满月、百天、周岁……</small></span>
+                </button>
+                <button type="button" role="radio" aria-checked="false" data-planning="thinking">
+                  <span class="radio-dot" aria-hidden="true"></span>
+                  <span><strong>有一些想法，还没具体想好</strong><small>想慢慢陪着宝宝记录下来</small></span>
+                </button>
+                <button type="button" role="radio" aria-checked="false" data-planning="not-yet">
+                  <span class="radio-dot" aria-hidden="true"></span>
+                  <span><strong>还没特别想过</strong><small>以后慢慢想也可以</small></span>
+                </button>
+              </div>
+              <p class="field-error" id="growthPlanningError" role="alert"></p>
+            </section>
+          </form>
+        </section>
+
+        <section class="step-panel completion-panel" id="completion" data-step="3" aria-labelledby="completionTitle" hidden>
+          <div class="completion-hero">
+            <div class="success-mark" aria-hidden="true">
+              <svg viewBox="0 0 32 32"><path d="m8 16.5 5.2 5.2L24.5 10" /></svg>
+            </div>
+            <h1 id="completionTitle">我们已经更了解宝宝一点啦</h1>
+            <p>谢谢你花了一点时间，告诉我们这些关于宝宝的小事。</p>
+            <p>拍摄组也会提前看到这些信息，为这次拍摄做好准备。</p>
+          </div>
+
+          <section class="summary-card" aria-label="填写摘要">
+            <div class="summary-person">
+              <strong id="summaryName">宝宝</strong>
+              <span id="summaryAge"></span>
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-item" id="summaryFeelingWrap">
+              <span>希望未来看到照片时感受到</span>
+              <strong id="summaryFeelings">—</strong>
+            </div>
+            <div class="summary-item">
+              <span>成长记录</span>
+              <strong id="summaryPlanning">—</strong>
+            </div>
+          </section>
+
+          <footer class="completion-brand">
+            <img id="completionLogo" src="./assets/kids-smile-logo.svg" alt="Kids Smile" />
+            <span id="brandSlogan">记录每一次长大</span>
+            <button id="resetDemo" type="button">重新填写</button>
+          </footer>
+        </section>
+      </div>
+
+      <footer class="bottom-bar" id="bottomBar">
+        <button class="primary-button" id="primaryButton" type="button">继续</button>
+      </footer>
+
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </main>
+
+    <div class="sheet-layer" id="timeSheet" aria-hidden="true">
+      <button class="sheet-backdrop" id="sheetBackdrop" type="button" aria-label="关闭时间选择"></button>
+      <section class="bottom-sheet" role="dialog" aria-modal="true" aria-labelledby="timeSheetTitle">
+        <header class="sheet-header">
+          <button id="cancelTime" type="button">取消</button>
+          <strong id="timeSheetTitle">出生时间</strong>
+          <button id="confirmTime" type="button">完成</button>
+        </header>
+        <div class="picker-shell">
+          <div class="picker-fade top" aria-hidden="true"></div>
+          <div class="picker-highlight" aria-hidden="true"></div>
+          <div class="picker-fade bottom" aria-hidden="true"></div>
+          <div class="picker-options" id="timePicker" role="listbox" tabindex="0" aria-label="出生时间段"></div>
+        </div>
+      </section>
+    </div>
+
+    <script src="./app.js?v=20260903-polish-6"></script>
+  </body>
+</html>
