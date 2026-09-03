@@ -96,7 +96,10 @@ const elements = {
   messageToBaby: $("#messageToBaby"),
   customFeeling: $("#customFeeling"),
   customFeelingWrap: $("#customFeelingWrap"),
+  nameQuestionTitle: $("#nameQuestionTitle"),
   genderQuestionTitle: $("#genderQuestionTitle"),
+  birthDateQuestionTitle: $("#birthDateQuestionTitle"),
+  birthTimeQuestionTitle: $("#birthTimeQuestionTitle"),
   messageQuestionTitle: $("#messageQuestionTitle"),
   feelingsQuestionTitle: $("#feelingsQuestionTitle"),
   growthQuestionTitle: $("#growthQuestionTitle"),
@@ -168,16 +171,25 @@ function updateDaysNote() {
   elements.daysNote.classList.add("is-visible");
 }
 
-function updateGenderQuestion() {
+function updateStepOneQuestions() {
   const name = profile.babyName.trim();
+  const displayName = name || "宝宝";
+  elements.nameQuestionTitle.textContent = `拍摄时，我们应该怎么称呼${displayName}？`;
   elements.genderQuestionTitle.textContent = name ? `${name}宝宝是？` : "宝宝是？";
+  elements.birthDateQuestionTitle.textContent = `${displayName}是哪天出生的？`;
+  elements.birthTimeQuestionTitle.textContent = `${displayName}大概是什么时间出生的？`;
 }
 
 function updateStepTwoQuestions() {
   const name = profile.babyName.trim() || "宝宝";
+  const pronoun = profile.babyGender === "boy"
+    ? "他"
+    : profile.babyGender === "girl"
+      ? "她"
+      : "TA";
   elements.messageQuestionTitle.textContent = `如果现在想对${name}说一句话，你会说什么？`;
-  elements.feelingsQuestionTitle.textContent = `以后${name}再看到这些照片，你最希望 TA 感受到什么？`;
-  elements.growthQuestionTitle.textContent = `${name}一天天长大，你有想过接下来想怎么记录 TA 吗？`;
+  elements.feelingsQuestionTitle.textContent = `以后${name}再看到这些照片，你最希望${pronoun}感受到什么？`;
+  elements.growthQuestionTitle.textContent = `${name}一天天长大，你有想过接下来想怎么记录${pronoun}吗？`;
 }
 
 function updateCollapsedHeader() {
@@ -225,7 +237,7 @@ function fillInputs() {
     : "选一个大概时间就好";
   elements.timeTrigger.classList.toggle("has-value", Boolean(profile.birthTimeHour));
   updateDaysNote();
-  updateGenderQuestion();
+  updateStepOneQuestions();
   updateStepTwoQuestions();
   renderGenderChoices();
   renderFeelingChoices();
@@ -538,7 +550,7 @@ function bindEvents() {
     profile.babyName = elements.babyName.value.trim();
     clearError("#nameQuestion", "#babyNameError");
     updateDaysNote();
-    updateGenderQuestion();
+    updateStepOneQuestions();
     updateStepTwoQuestions();
     saveProfile();
   });
@@ -555,6 +567,7 @@ function bindEvents() {
       profile.babyGender = button.dataset.gender;
       clearError("#genderQuestion", "#babyGenderError");
       renderGenderChoices();
+      updateStepTwoQuestions();
       saveProfile();
     });
   });

@@ -47,7 +47,7 @@
 
           <form class="questions" id="stepOneForm" novalidate>
             <section class="question" id="nameQuestion">
-              <label class="question-title" for="babyName">拍摄时，我们应该怎么称呼宝宝？</label>
+              <label class="question-title" id="nameQuestionTitle" for="babyName">拍摄时，我们应该怎么称呼宝宝？</label>
               <div class="field-shell">
                 <input
                   id="babyName"
@@ -76,7 +76,7 @@
             </section>
 
             <section class="question" id="dateQuestion">
-              <label class="question-title" for="birthDate">宝宝是哪天出生的？</label>
+              <label class="question-title" id="birthDateQuestionTitle" for="birthDate">宝宝是哪天出生的？</label>
               <div class="field-shell date-shell">
                 <input id="birthDate" name="birthDate" type="date" />
                 <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -88,7 +88,7 @@
             </section>
 
             <section class="question" id="timeQuestion">
-              <span class="question-title">宝宝大概是什么时间出生的？</span>
+              <span class="question-title" id="birthTimeQuestionTitle">宝宝大概是什么时间出生的？</span>
               <button class="field-shell select-trigger" id="timeTrigger" type="button" aria-haspopup="dialog">
                 <span id="timeValue">选一个大概时间就好</span>
                 <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -244,6 +244,6 @@
       </section>
     </div>
 
-    <script src="./app.js?v=20260903-polish-6"></script>
+    <script src="./app.js?v=20260903-dynamic-1"></script>
   </body>
 </html>
