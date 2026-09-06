@@ -809,6 +809,11 @@ textarea {
   transition: color 120ms ease, font-size 120ms ease, opacity 120ms ease;
 }
 
+.picker-option > span {
+  width: 136px;
+  text-align: left;
+}
+
 .picker-option.is-selected {
   color: var(--ink);
   font-size: 20px;
@@ -1064,8 +1069,14 @@ body.sheet-open {
 
 @media (max-width: 420px) {
   .app-header.has-context .back-button.is-visible + .brand-logo {
-    width: 0;
-    opacity: 0;
+    width: 64px;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 374px) {
+  .app-header.has-context .back-button.is-visible + .brand-logo {
+    width: 52px;
   }
 }
 
